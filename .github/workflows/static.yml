@@ -37,6 +37,10 @@ jobs:
         with:
           # Upload entire repository
           path: './www/'
+          exec: |
+            cordova platform add android && \
+            cordova build --no-telemetry && \
+            cp "$(find . -name '*.apk')" .
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
